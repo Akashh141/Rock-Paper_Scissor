@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <script>
+   
+  let userScore=0
+  let computerScore=0
+  let drawscore=0
+   
+        //UserFunction
+
+        function getUserChoice(){
+         let userChoice= prompt("Enter your hands").toLowerCase(); 
+
+         let userCaptialWord= userChoice[0].toUpperCase();
+         let userSliced = userChoice.slice(1);
+         let newUser= userCaptialWord+userSliced;
+         return newUser;
+            }
+             //computer function
+        function getComputerChoice() {
+
+            let hands=["Rock","Paper","Scissors"];
+            let random= (Math.floor(Math.random() * hands.length));
+            let computerChoice= hands[random].toLowerCase();
+
+
+            let computerCaptialWord= computerChoice[0].toUpperCase();
+            let computerSliced = computerChoice.slice(1);
+            let newComputer= computerCaptialWord+computerSliced;
+            return newComputer;
+            }
+        
+        function getPlayGround(a,b){
+           
+
+            switch(a+"-"+b){
+            case "Rock-Scissors":
+            case "Paper-Rock":
+            case "Scissors-Paper":
+                console.log(`You Win, ${a} beats ${b} `);
+                userScore+=1;
+            break;
+            case "Rock-Paper":
+            case "Paper-Scissors":
+            case "Scissors-Rock":
+                console.log(`You Lose, ${b} beats ${a} `);
+                computerScore+=1;
+
+            break;
+            default :
+            
+                
+                let c= console.log(`Draw, ${a} draws with ${b}`)
+                 drawscore+=1
+
+               
+
+           
+            
+        }
+    }
+
+
+    function game(){
+        
+        for(i=0;i<=4;i++){
+            
+            
+
+         let newUser= getUserChoice()
+         let newComputer= getComputerChoice()
+         getPlayGround(a=newUser,b=newComputer)
+
+    } 
+    } 
+    
+    
+game()
+if(userScore>computerScore){
+    console.log(`You won, you scored ${userScore}, computer scored ${computerScore}`)
+
+}
+else if(userScore===computerScore){
+    console.log(`Its a draw, you scored ${userScore}, computer scored ${computerScore}`)
+}
+else{
+    console.log(`You lost, you scored ${userScore}, computer scored ${computerScore}`)
+}
+
+ 
+
+
+
+    </script>
+</body>
+</html>
