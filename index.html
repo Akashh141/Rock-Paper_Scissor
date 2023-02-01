@@ -7,22 +7,48 @@
     <title>Document</title>
 </head>
 <body>
+    <div id="container">
+    <button id ="RockC">Rock</button>
+    <button id ="PaperC">Paper</button>
+    <button id ="ScissorC">Scissors</button>
+    
+</div>
    <script>
-   
-  let userScore=0
+ let userScore=0
   let computerScore=0
   let drawscore=0
-   
-        //UserFunction
 
-        function getUserChoice(){
-         let userChoice= prompt("Enter your hands").toLowerCase(); 
+    const container = document.querySelector("#container")
+    const para= document.createElement("p")
+    
+    const div = document.createElement("div")
+    div.style.border = "solid #000000"; 
+    div.style.backgroundColor="pink"
+    const p2= document.createElement("p")
+    p2.textContent="User total wins: "
+    const p3= document.createElement("p")
+    p3.textContent="Computer total wins: "
 
-         let userCaptialWord= userChoice[0].toUpperCase();
-         let userSliced = userChoice.slice(1);
-         let newUser= userCaptialWord+userSliced;
-         return newUser;
-            }
+        container.appendChild(div)
+       
+        div.appendChild(p2)
+        div.appendChild(p3)
+ 
+
+
+const buttons = ['RockC', 'PaperC', 'ScissorsC'];
+
+buttons.forEach(buttonId => {
+  const btn = document.querySelector(`#${buttonId}`);
+  btn.addEventListener('click', () => {
+    const choice = buttonId.slice(0, -1);
+    game(choice);
+    
+  });
+});
+
+
+
              //computer function
         function getComputerChoice() {
 
@@ -44,48 +70,58 @@
             case "Rock-Scissors":
             case "Paper-Rock":
             case "Scissors-Paper":
-                console.log(`You Win, ${a} beats ${b} `);
-                userScore+=1;
+              
+               
+                para.textContent=`You Win, ${a} beats ${b} `
+                container.appendChild(para)
+                p2.textContent=`User total wins: ${userScore+=1}`;
+                if (userScore>=5){
+                    para.textContent="User won the game"
+                }
+                
             break;
             case "Rock-Paper":
             case "Paper-Scissors":
             case "Scissors-Rock":
-                console.log(`You Lose, ${b} beats ${a} `);
-                computerScore+=1;
+               
+               
+                para.textContent=`You Lose, ${b} beats ${a} `
+                container.appendChild(para)
+                p3.textContent=`Computer total wins: ${computerScore+=1}`;
+                if (computerScore>=5){
+                    para.textContent="Computer won the game"
+
+                }
 
             break;
             default :
             
+                 para.textContent=`Draw, ${a} draws with ${b}`
+                container.appendChild(para)
                 
-                let c= console.log(`Draw, ${a} draws with ${b}`)
                  drawscore+=1
 
-               
-
-           
             
         }
     }
 
+    
 
-    function game(){
-        
-        for(i=0;i<=4;i++){
-            
-            
+    function game(choice){
 
-         let newUser= getUserChoice()
+         
          let newComputer= getComputerChoice()
-         getPlayGround(a=newUser,b=newComputer)
+         getPlayGround(a=choice,b=newComputer)
 
     } 
-    } 
+    
+     
     
     
-game()
+
 if(userScore>computerScore){
     console.log(`You won, you scored ${userScore}, computer scored ${computerScore}`)
-
+    
 }
 else if(userScore===computerScore){
     console.log(`Its a draw, you scored ${userScore}, computer scored ${computerScore}`)
@@ -94,10 +130,11 @@ else{
     console.log(`You lost, you scored ${userScore}, computer scored ${computerScore}`)
 }
 
- 
-
-
 
     </script>
 </body>
 </html>
+
+
+
+
